@@ -14,7 +14,7 @@ namespace BookmarketApp
     {
         private static string connection_str = "Server=127.0.0.1;" +
                                                "User Id=postgres;" +
-                                               "Password=*****;" +
+                                               "Password=785941828;" +
                                                "Database=vin_dz2";
         public static NpgsqlConnection con = new NpgsqlConnection(connection_str);
         //   private string dbstr = ''
@@ -33,8 +33,8 @@ namespace BookmarketApp
                 //SqlCommand sqlcommand = new SqlCommand(query, con);
                 NpgsqlDataAdapter da = new NpgsqlDataAdapter(query, con);
                 ds.Reset();
-                da.Fill(ds);
-                dt = ds.Tables[0];
+                da.Fill(dt);
+                //dt = ds.Tables[0];
             }
             catch (Exception e)
             {
@@ -59,6 +59,7 @@ namespace BookmarketApp
                 //SqlCommand sqlcommand = new SqlCommand(query, con);
                 NpgsqlDataAdapter da = new NpgsqlDataAdapter(query, con);
                 ds.Reset();
+
                 da.Fill(ds);
                 dt = ds.Tables[0];
                 return dt;

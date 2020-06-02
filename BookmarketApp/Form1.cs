@@ -65,8 +65,8 @@ namespace BookmarketApp
 
     private void showFormCreateEvent_btn_Click(object sender, EventArgs e)
         {
-            CreateEventForm cef = new CreateEventForm();
-            cef.Show();
+// CreateEventForm cef = new CreateEventForm(this, 0, false);
+            //cef.Show();
         }
 
         private void test_button_Click(object sender, EventArgs e)

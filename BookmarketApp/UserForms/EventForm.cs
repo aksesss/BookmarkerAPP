@@ -46,7 +46,7 @@ namespace BookmarketApp
         }
         private void createEvent_btn_Click(object sender, EventArgs e)
         {
-            CreateEventForm crEv = new CreateEventForm();
+            CreateEventForm crEv = new CreateEventForm(this, 0, false);
             crEv.Show();
         }
         private void showUsers_btn_Click(object sender, EventArgs e)
@@ -67,7 +67,7 @@ namespace BookmarketApp
             {
                 p = 0;
             }
-            UpdateEventForm ueF = new UpdateEventForm(this, p);
+            CreateEventForm ueF = new CreateEventForm(this, p, p!=0);
             ueF.Show();
         }
         private void delete_btn_Click(object sender, EventArgs e)

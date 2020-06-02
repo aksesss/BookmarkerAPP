@@ -33,6 +33,7 @@ namespace BookmarketApp
 
         private void updateEvent_btn_Click(object sender, EventArgs e)
         {
+            /*
             if (!string.IsNullOrWhiteSpace(type_txtBox.Text) &&
                 !string.IsNullOrWhiteSpace(place_txtBox.Text) &&
                 !string.IsNullOrWhiteSpace(date_txtBox.Text) &&
@@ -54,7 +55,7 @@ namespace BookmarketApp
                         MessageBoxIcon.Information,
                         MessageBoxDefaultButton.Button1);
                 }
-            }
+            }*/
         }
 
     }

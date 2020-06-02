@@ -45,7 +45,7 @@ namespace BookmarketApp
         public User(int id1)
         {
             DataTable dt = (DBConnection.getDT($"Select * from \"User\" " +
-                                               $"WHERE id={id1}"));
+                                               $"WHERE \"ID\"={id1}"));
             if (dt.Rows.Count != 0)
             {
                 id = dt.Rows[0].Field<int>(0);
@@ -63,7 +63,7 @@ namespace BookmarketApp
         public User(string login1)
         {
             DataTable dt = (DBConnection.getDT($"Select * from \"User\" " +
-                                       $"WHERE login='{login1}'"));
+                                       $"WHERE \"login\"='{login1}'"));
             if (dt.Rows.Count != 0)
             {
                 id = dt.Rows[0].Field<int>(0);
@@ -84,7 +84,7 @@ namespace BookmarketApp
             if (!inDB)
             {
                 query = $"INSERT INTO \"{this.GetType().Name}\" " +
-                    $"(login, password, fname, lname, email)" +
+                    $"(\"login\", \"password\", \"fname\", \"lname\", \"email\")" +
                     $"VALUES('{login}', '{password}', " +
                     $"'{fname}', '{lname}', '{email}')";
                 debug = query;
@@ -105,12 +105,15 @@ namespace BookmarketApp
         }
         public static DataTable showAll()
         {
-            return (DBConnection.getDT($"Select ID,login, fname, lname, email, super_user, cash " +
+            return (DBConnection.getDT($"Select \"ID\",\"login\", \"fname\"," +
+                                             $" \"lname\", \"email\", \"super_user\"," +
+                                             $" \"cash\" " +
                                        $"from \"User\""));
         }
         public static DataTable findByValue(string column, string value)
         {
-            return (DBConnection.getDT($"Select login, fname, lname, email, super_user, cash " +
+            return (DBConnection.getDT($"Select \"login\", \"fname\", \"lname\"," +
+                                             $" \"email\", \"super_user\", \"cash\" " +
                                        $"from \"User\" " +
                                        $"WHERE {column}={value}"));
         }
@@ -148,7 +151,7 @@ namespace BookmarketApp
             if (!inDB)
             {
                 query = $"INSERT INTO \"{this.GetType().Name}\" " +
-                        $"\"name\", \"place\", \"date\", \"type\")" +
+                        $"(\"name\", \"place\", \"date\", \"type\")" +
                         $"VALUES('{name}', " +
                                $"'{place}', " +
                                $"'{date.ToString("yyyy-MM-dd HH:mm:ss")}', " +
@@ -160,9 +163,9 @@ namespace BookmarketApp
                 query = $"UPDATE \"{this.GetType().Name}\" " +
                                 $"SET \"name\" ='{name}'," +
                                     $"\"place\"='{place}'," +
-                                    $"\"date\" ='{date.ToString("yyyy-MM-dd HH:mm")}'" +
-                                    $"\"type\"='{type}'," +
-                                    $" WHERE id={id.ToString()}";
+                                    $"\"date\" ='{date.ToString("yyyy-MM-dd HH:mm")}'," +
+                                    $"\"type\"='{type}'" +
+                                    $" WHERE \"ID\"={id.ToString()}";
             }
             DBConnection.execute(query);
             inDB = true;
@@ -207,7 +210,7 @@ namespace BookmarketApp
             }
             else
             {
-                query = @"ALTER TABLE TEST SET name= '" + name + @"') WHERE id=" + id.ToString();
+                //query = $ "ALTER TABLE TEST SET name= '" + name + @"') WHERE id=" + id.ToString();
             }
             //string query = @"INSERT INTO TEST VALUES(""als"")";
             DBConnection.execute(query);

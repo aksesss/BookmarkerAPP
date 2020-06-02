@@ -92,7 +92,7 @@ namespace BookmarketApp
         {
             return User.showAll();
         }
-        public static Error createEvent(string eventType, string place, 
+        public static Error createEvent(string name, string eventType, string place, 
                 string date, string time) 
         {
             Error res;
@@ -107,7 +107,8 @@ namespace BookmarketApp
                         out dtime
                     );
 
-                ev.eventType = eventType;
+                ev.name = name;
+                ev.type = eventType;
                 ev.place = place;
                 ev.date = dtime;
 
@@ -122,7 +123,6 @@ namespace BookmarketApp
                 res.message = e.ToString();
             }
             return res;
-
         }
         public static Error deleteEvent(int event_id)
         {
@@ -142,7 +142,8 @@ namespace BookmarketApp
             }
             return er;
         }
-        public static Error updateEvent(Event ev, string eventType, string place, string date, string time)
+        public static Error updateEvent(Event ev, string name, string eventType, string place, 
+                                                  string date, string time)
         {
             DateTime dtime;
             DateTime.TryParse(
@@ -154,9 +155,9 @@ namespace BookmarketApp
         Error result;
             result.error = false;
             string update_fields = "";
-
-            if (ev.eventType != eventType) { 
-                ev.eventType = eventType;
+            ev.name = name;
+            if (ev.type != eventType) { 
+                ev.type = eventType;
                 update_fields = update_fields + "Тип события  ";
             }
             if (ev.place != place)
