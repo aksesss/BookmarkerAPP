@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BookmarketApp.CreateEventForm" Collapsed="true">
+    <Position X="3" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAEAAACAAAJAAAACAAQADAAAAAAAAhAAAAAJAAAA=</HashCode>
+      <FileName>CreateEventForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BookmarketApp.EventForm">
+    <Position X="1" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAACABADFACJEAAACAgAACAAgIQAAACACAAAIEACA=</HashCode>
+      <FileName>EventForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BookmarketApp.Model" Collapsed="true">
+    <Position X="10.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAACQAAAAAAAAAAAAAACAAAAgA=</HashCode>
+      <FileName>Models.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BookmarketApp.Users" Collapsed="true">
+    <Position X="8.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAQAAAAgACEBAAgAACBAAAAAAAAAAAAAAYAAAAAAAA=</HashCode>
+      <FileName>Models.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BookmarketApp.Event" Collapsed="true">
+    <Position X="8.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAgACAAAAAAAQAAAQAAAAAQAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Models.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BookmarketApp.MainForm" Collapsed="true">
+    <Position X="0.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BRAEAAAAAKAAABAAAACAEAACKEAAAEABAAAAAAAAAAQ=</HashCode>
+      <FileName>MainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BookmarketApp.TransactionScripts" Collapsed="true">
+    <Position X="5.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAQAgIAAAAAAAAAAAAAAkAABAAgCAAA=</HashCode>
+      <FileName>TransactionScripts.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BookmarketApp.RegistrationForm" Collapsed="true">
+    <Position X="4" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQICAAACAAABAAgICAAAACIAAAAAAAEAQAAAAAgAg=</HashCode>
+      <FileName>RegistrationForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BookmarketApp.DBConnection" Collapsed="true">
+    <Position X="10.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAQAAAAAABAAACAAAAAAAAAA=</HashCode>
+      <FileName>dbConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BookmarketApp.encryption">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>encryption.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="BookmarketApp.Error" Collapsed="true">
+    <Position X="8.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>TransactionScripts.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
