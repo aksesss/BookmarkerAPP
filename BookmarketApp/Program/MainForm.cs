@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework.Components;
+using MetroFramework.Forms;
 
 namespace BookmarketApp
 {
-    public partial class MainForm : Form
+    public partial class MainForm : MetroForm
     {
         public MainForm()
         {

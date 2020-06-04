@@ -120,7 +120,7 @@ namespace BookmarketApp
         public bool isSuperUser() { return super_user; }
     }
 
-    public class Event:Model
+/*    public class Event:Model
     {
         public string name;
         public string place;
@@ -173,6 +173,7 @@ namespace BookmarketApp
        
         public static DataTable showAll()
         {
+            //DataTable dt = new DataTable()
             DataTable dt = DBConnection.getDT($"Select * from \"Event\"");
             return dt;
         }
@@ -183,10 +184,62 @@ namespace BookmarketApp
         }
 
     }
-
-    public class BetType
+*/
+    public class BetType:Model
     {
-     
+        public Event event_;
+        public int eventid;
+        public string description;
+        public string[] coef;
+
+        public BetType() { }
+        public BetType(int id1)
+        {
+            DataTable dt = (DBConnection.getDT($"Select \"ID\", \"event\", \"description\"," +
+                           $"array_to_string(\"coef1\", ',', '*')" +
+                           $"from \"BetType\" " +
+                           $"WHERE \"ID\"={id1}"));
+            if (dt.Rows.Count != 0)
+            {
+                this.id = dt.Rows[0].Field<int>(0);
+                this.eventid = dt.Rows[0].Field<int>(1);
+                //this.event_ = new Event(eventid);
+                this.description = dt.Rows[0].Field<String>(2);
+                String coef_string = dt.Rows[0].Field<String>(3);
+                String[] smth = coef_string.Split(',');
+            }
+        }
+        public static DataTable showAll()
+        {
+            DataTable dt = DBConnection.getDT($"Select \"ID\", \"event\", \"description\", " +
+                                              $"array_to_string(\"coef1\", ',', '*')" +
+                                              $"from \"BetType\"");
+            return dt;
+        }
+        public void save()
+        {
+            string query = "";
+            if (!inDB)
+            {
+                query = $"INSERT INTO \"{this.GetType().Name}\" " +
+                        $"(\"event\", \"description\", \"coef1\")" +
+                        $"VALUES('{eventid}', " +
+                               $"'{description}', " +
+                               $"'{String.Join(",", coef)}' ";
+
+            }
+            else
+            {
+               // query = $"UPDATE \"{this.GetType().Name}\" " +
+               //                 $"SET \"name\" ='{name}'," +
+               //                     $"\"place\"='{place}'," +
+               //                     $"\"date\" ='{date.ToString("yyyy-MM-dd HH:mm")}'," +
+               //                     $"\"type\"='{type}'" +
+               //                     $" WHERE \"ID\"={id.ToString()}";
+            }
+            DBConnection.execute(query);
+            inDB = true;
+        }
     }
     class Test
     {

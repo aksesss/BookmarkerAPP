@@ -42,3 +42,5 @@ D:\als\учеба\1курс\2сем\Вин\Курсач\Новая папка\Bo
 D:\als\учеба\1курс\2сем\Вин\Курсач\Новая папка\BookmarkerAPP\BookmarketApp\bin\Debug\Npgsql.xml
 D:\als\учеба\1курс\2сем\Вин\Курсач\Новая папка\BookmarkerAPP\BookmarketApp\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\als\учеба\1курс\2сем\Вин\Курсач\Новая папка\BookmarkerAPP\BookmarketApp\obj\Debug\BookmarketApp.csproj.CopyComplete
+D:\als\учеба\1курс\2сем\Вин\Курсач\Новая папка\BookmarkerAPP\BookmarketApp\bin\Debug\MetroFramework.dll
+D:\als\учеба\1курс\2сем\Вин\Курсач\Новая папка\BookmarkerAPP\BookmarketApp\bin\Debug\MetroFramework.Fonts.dll

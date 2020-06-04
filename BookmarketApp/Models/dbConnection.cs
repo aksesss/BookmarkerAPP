@@ -18,8 +18,8 @@ namespace BookmarketApp
                                                "Database=vin_dz2";
         public static NpgsqlConnection con = new NpgsqlConnection(connection_str);
         //   private string dbstr = ''
-        private static DataSet ds = new DataSet();
-        private static DataTable dt = new DataTable();
+        //private static DataSet ds = new DataSet();
+        //private static DataTable dt = new DataTable();
 
         private DBConnection()
         {
@@ -32,6 +32,8 @@ namespace BookmarketApp
                 con.Open();
                 //SqlCommand sqlcommand = new SqlCommand(query, con);
                 NpgsqlDataAdapter da = new NpgsqlDataAdapter(query, con);
+                DataSet ds = new DataSet();
+                DataTable dt = new DataTable();
                 ds.Reset();
                 da.Fill(dt);
                 //dt = ds.Tables[0];
@@ -58,6 +60,8 @@ namespace BookmarketApp
                 con.Open();
                 //SqlCommand sqlcommand = new SqlCommand(query, con);
                 NpgsqlDataAdapter da = new NpgsqlDataAdapter(query, con);
+                DataSet ds = new DataSet();
+                DataTable dt = new DataTable();
                 ds.Reset();
 
                 da.Fill(ds);

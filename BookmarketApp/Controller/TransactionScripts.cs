@@ -67,6 +67,10 @@ namespace BookmarketApp
             User user = new User(login);
             return user.id;
         }
+        public static DataTable getAllUsers()
+        {
+            return User.showAll();
+        }
         public static DataTable getEventById(int id)
         {
             if (id <= 0)
@@ -88,16 +92,12 @@ namespace BookmarketApp
         {
             return Event.showAll();
         }
-        public static DataTable getAllUsers()
-        {
-            return User.showAll();
-        }
         public static Error createEvent(string name, string eventType, string place, 
                 string date, string time) 
         {
             Error res;
             DateTime dtime;
-            Event ev = new Event();
+            Event ev = new Event(eventType);
             try
             {
                 DateTime.TryParse(
@@ -108,7 +108,7 @@ namespace BookmarketApp
                     );
 
                 ev.name = name;
-                ev.type = eventType;
+                //ev.type = eventType;
                 ev.place = place;
                 ev.date = dtime;
 
@@ -152,18 +152,16 @@ namespace BookmarketApp
                 System.Globalization.DateTimeStyles.AssumeLocal,
                 out dtime);
 
-        Error result;
+            Error result;
             result.error = false;
             string update_fields = "";
             ev.name = name;
-            if (ev.type != eventType) { 
-                ev.type = eventType;
-                update_fields = update_fields + "Тип события  ";
-            }
+
+            //EventFlyweightFactory fact = EventFlyweightFactory.getInstance();
             if (ev.place != place)
             {
                 ev.place = place;
-                update_fields = update_fields + "Место  ";
+                update_fields = update_fields + "Место ";
             }
            
             
@@ -198,6 +196,35 @@ namespace BookmarketApp
                 result.message = e.ToString();
                 return result;
             }
+        }
+        public static Error updateEvent(int ev_id, string name, string place, 
+                                                  string date, string eventType)
+        {
+            Error res = new Error();
+            res.error = false;
+
+            try
+            {
+                Event ev1 = new Event(ev_id);
+                
+//                ev1.id = ev_id;
+                ev1.name = name;
+                ev1.place = place;
+                DateTime dtime;
+                DateTime.TryParse(
+                    $"{date}",
+                    System.Globalization.CultureInfo.CurrentCulture,
+                    System.Globalization.DateTimeStyles.AssumeLocal,
+                    out dtime);
+                ev1.date = dtime;
+                ev1.save();
+            }
+            catch (Exception e)
+            {
+                res.error = true;
+                res.message = e.ToString();
+            }
+            return res;
         }
     }
 }
