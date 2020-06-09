@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework.Forms;
 
 namespace BookmarketApp
 {
-    public partial class CreateEventForm : Form
+    public partial class CreateEventForm : MetroForm
     {
         private bool update;
         private Event event_;
@@ -64,12 +65,17 @@ namespace BookmarketApp
                 else
                 {
                     DialogResult result = MessageBox.Show(
-                        res.message,
+                        //res.message,
+                        "Ошибка",
                         "Проверьте корректность введенных данных",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information,
                         MessageBoxDefaultButton.Button1);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Заполните все поля");
             }
         }
     }

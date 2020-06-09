@@ -92,14 +92,14 @@ namespace BookmarketApp
             }
             else
             {
-                query = $"UPDATE TABLE \"{this.GetType().Name}\" SET ($login ={login}," +
-                                                                $"password={password}" +
-                                                                $"fist_name= '{fname}'," +
-                                                                $"last_name= '{lname}'," +
-                                                                $"email={email}," +
-                                                                $"super_user=0" +
-                                                                $"cash= 0" +
-                                                            $") WHERE \"ID\"={id.ToString()}";
+                query = $"UPDATE \"{this.GetType().Name}\" SET \"login\" = '{login}' ," +
+                                                                $"\"password\" = '{password}', " +
+                                                                $"\"fname\" = '{fname}', " +
+                                                                $"\"lname\" = '{lname}', " +
+                                                                $"\"email\" = '{email}'," +
+                                                                $"\"super_user\" = {this.isSuperUser()}, " +
+                                                                $"\"cash\" = {this.cash}" +
+                                                            $" WHERE \"ID\"={id.ToString()}";
             }
             DBConnection.execute(query);
         }
@@ -118,6 +118,15 @@ namespace BookmarketApp
                                        $"WHERE {column}={value}"));
         }
         public bool isSuperUser() { return super_user; }
+        public float getCash()
+        {
+            return this.cash;
+        }
+        public void reduceCash(float value)
+        {
+            this.cash = this.cash - value;
+            this.save();
+        }
     }
 
 /*    public class Event:Model
@@ -187,7 +196,7 @@ namespace BookmarketApp
 */
     public class BetType:Model
     {
-        public Event event_;
+        //public Event event_;
         public int eventid;
         public string description;
         public string[] coef;
@@ -207,13 +216,22 @@ namespace BookmarketApp
                 this.description = dt.Rows[0].Field<String>(2);
                 String coef_string = dt.Rows[0].Field<String>(3);
                 String[] smth = coef_string.Split(',');
+                this.inDB = true;
             }
         }
         public static DataTable showAll()
         {
             DataTable dt = DBConnection.getDT($"Select \"ID\", \"event\", \"description\", " +
-                                              $"array_to_string(\"coef1\", ',', '*')" +
+                                              $"array_to_string(\"coef1\", ',', '*') AS coefs " +
                                               $"from \"BetType\"");
+            return dt;
+        }
+        public static DataTable showAllByEvent(int event_id)
+        {
+            DataTable dt = DBConnection.getDT($"Select \"ID\", \"event\", \"description\", " +
+                                              $"coef1[array_length(coef1, 1)] as coef " +
+                                              $"from \"BetType\" " +
+                                              $"WHERE \"event\" = {event_id}");
             return dt;
         }
         public void save()
@@ -225,21 +243,108 @@ namespace BookmarketApp
                         $"(\"event\", \"description\", \"coef1\")" +
                         $"VALUES('{eventid}', " +
                                $"'{description}', " +
-                               $"'{String.Join(",", coef)}' ";
+                               $"'{String.Join(",", coef)}' )";
 
             }
             else
             {
-               // query = $"UPDATE \"{this.GetType().Name}\" " +
-               //                 $"SET \"name\" ='{name}'," +
-               //                     $"\"place\"='{place}'," +
-               //                     $"\"date\" ='{date.ToString("yyyy-MM-dd HH:mm")}'," +
-               //                     $"\"type\"='{type}'" +
-               //                     $" WHERE \"ID\"={id.ToString()}";
+               query = $"UPDATE \"{this.GetType().Name}\" " +
+                                $"SET \"event\" ='{eventid}'," +
+                                    $"\"description\"='{description}'," +
+                                    $"\"coef1\"='{{ {String.Join(",", coef)} }}'" +
+                                    $" WHERE \"ID\"={id.ToString()}";
             }
             DBConnection.execute(query);
             inDB = true;
         }
+
+        public static float getLastCoefByID(int btid)
+        {
+            DataTable dt = DBConnection.getDT($"Select coef1[array_length(coef1, 1)] as coef " +
+                                              $"from \"BetType\" " +
+                                              $"WHERE \"ID\" = {btid}");
+            return dt.Rows[0].Field<float>(0);
+
+        }
+    }
+
+    public class Bet:Model
+    {
+        public int client_id;
+        public int bet_type_id;
+        public float bet_coef;
+        public float cost;
+        public DateTime date;
+        public bool status;
+
+
+        public Bet() { }
+
+        public Bet(int id1)
+        {
+            DataTable dt = (DBConnection.getDT($"Select \"ID\", \"client\", \"bet_type\"," +
+                           $"\"bet_coef\", \"cost\", \"date\", \"status\" " +
+                           $"from \"Bet\" " +
+                           $"WHERE \"ID\"={id1}"));
+            if (dt.Rows.Count != 0)
+            {
+                this.id = dt.Rows[0].Field<int>(0);
+                this.client_id = dt.Rows[0].Field<int>(1);
+                this.bet_type_id = dt.Rows[0].Field<int>(2);
+                this.bet_coef = dt.Rows[0].Field<float>(3);
+                this.cost = dt.Rows[0].Field<float>(4);
+                this.date = dt.Rows[0].Field<DateTime>(5);
+                this.inDB = true;
+            }
+            else
+            {
+                inDB = false;
+            }
+        }
+        public static DataTable showAll()
+        {
+            DataTable dt = DBConnection.getDT($"Select \"ID\", \"client\", \"bet_type\"," +
+                           $"\"bet_coef\", \"cost\", \"date\", \"status\" " +
+                           $"from \"Bet\" ");
+            return dt;
+        }
+        public void save()
+        {
+            string query = "";
+            if (!inDB)
+            {
+                query = $"INSERT INTO \"{this.GetType().Name}\" " +
+                        $"(\"client\", \"bet_type\",  " +
+                           $"\"bet_coef\", \"cost\", \"date\") " +
+                        $"VALUES('{this.client_id}', " +
+                               $"'{this.bet_type_id}', " +
+                               $"{this.bet_coef.ToString().Replace(',', '.')} , " +
+                               $"{this.cost}, " +
+                               $"'{this.date.ToString()}' )";
+
+            }
+            else
+            {
+                query = $"UPDATE \"{this.GetType().Name}\" " +
+                                 $"SET \"client\" ='{this.client_id}'," +
+                                     $"\"bet_type\"='{this.bet_type_id}'," +
+                                     $"\"bet_coef\"='{this.bet_coef.ToString().Replace(',', '.')}'," +
+                                     $"\"cost\"='{this.cost}'," +
+                                     $"\"date\"='{this.date.ToString()}', " +
+                                     $"\"status\"='{this.status}' " +
+                                     $" WHERE \"ID\"={id.ToString()}";
+            }
+            DBConnection.execute(query);
+            inDB = true;
+        }
+        public static DataTable showAllByUID(int uid)
+        {
+            string query = $"SELECT * FROM \"Bet\" WHERE \"client\" = {uid}";
+            DataTable dt = DBConnection.getDT(query);
+            return (dt);
+        }
+
+
     }
     class Test
     {

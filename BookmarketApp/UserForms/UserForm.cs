@@ -28,6 +28,24 @@ namespace BookmarketApp
                 createEvent_btn.Visible = true;
                 showUsers_btn.Visible = true;
                 delete_btn.Visible = true;
+                user_cash_lbl.Visible = false;
+                BetValue_txtBox.Visible = false;
+                betSum_lbl.Visible = false;
+                makeBet_btn.Visible = false;
+                totalcost_lbl.Visible = false;
+            }
+            else
+            {
+                metroTabControl1.TabPages.Remove(metroTabPage4);
+                //metroTabControl1.TabPages.Remove(metroTabPage3);
+                user_cash_lbl.Text = this_user.getCash().ToString();
+                user_cash_lbl.Visible = true;
+                BetValue_txtBox.Visible = true;
+                betSum_lbl.Visible = true;
+                makeBet_btn.Visible = true;
+                totalcost_lbl.Visible = true;
+
+                //metroTabControl1.TabPages.Remove();
             }
         }
 
@@ -64,8 +82,22 @@ namespace BookmarketApp
             {
                 p = 0;
             }
-            CreateEventForm ueF = new CreateEventForm(this, p, p != 0);
-            ueF.Show();
+            if (this_user.isSuperUser())
+            {
+                CreateEventForm ueF = new CreateEventForm(this, p, p != 0);
+                ueF.Show();
+            }
+            else
+            {
+                if (p != 0)
+                {
+                    metroTabControl1.SelectedTab = metroTabPage2;
+                    betType_GridView.DataSource = TransactionScripts.getBetTypeByEvent(p);
+                    makeBet_btn.Show();
+                    BetValue_txtBox.Show();
+                    betSum_lbl.Show();
+                }
+            }
         }
         private void delete_btn_Click(object sender, EventArgs e)
         {
@@ -76,13 +108,6 @@ namespace BookmarketApp
 
 
 
-        private void showUsers_btn_Click(object sender, EventArgs e)
-        {
-            eventGridView1.DataSource = TransactionScripts.getAllUsers();
-            //dataGridView1.DataSource = Users.showAll();
-            createEvent_btn.Visible = false;
-            delete_btn.Visible = false;
-        }
         private void exit_btn_Click(object sender, EventArgs e)
         {
             authForm.Show();
@@ -118,10 +143,6 @@ namespace BookmarketApp
                 //Name_txt.Text = row.Cells["First Name"].Value.ToString();
                 //Surname_txt.Text = row.Cells["Last Name"].Value.ToString();
             }
-
-        }
-        private void EventForm_Load(object sender, EventArgs e)
-        {
 
         }
 
@@ -167,6 +188,8 @@ namespace BookmarketApp
             }
         }
 
+        int betType_id;
+
         private void betType_GridView_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -176,6 +199,7 @@ namespace BookmarketApp
                 try
                 {
                     int p = int.Parse(row.Cells[1].Value.ToString());
+                    this.betType_id = int.Parse(row.Cells[0].Value.ToString());
                     Event ev = new Event(p);
                     ev_name_lbl.Text = ev.name;
                     ev_date_lbl.Text = ev.date.ToString();
@@ -190,6 +214,116 @@ namespace BookmarketApp
                     ev_type_lbl.Text = "";
                 }
             }
+        }
+
+        private void betType_GridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+
+            {
+                if (e.RowIndex >= 0)
+                {
+                    DataGridViewRow row = this.betType_GridView.Rows[e.RowIndex];
+                    //debug_txtBox.Text = row.Cells[0].Value.ToString();
+                    try
+                    {
+                        int p = int.Parse(row.Cells[0].Value.ToString());
+                        TransactionScripts.updateBetType(p,
+                            int.Parse(row.Cells[1].Value.ToString()),
+                            row.Cells[2].Value.ToString(),
+                            row.Cells[3].Value.ToString());
+                    }
+                    catch (FormatException ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+
+                    //Name_txt.Text = row.Cells["First Name"].Value.ToString();
+                    //Surname_txt.Text = row.Cells["Last Name"].Value.ToString();
+                }
+
+            }
+        }
+
+        private void bet_refrash_btn_Click(object sender, EventArgs e)
+        {
+            if (this_user.isSuperUser())
+            {
+                betGridView.DataSource = TransactionScripts.getAllBets();
+            }
+            else
+            {
+                betGridView.DataSource = TransactionScripts.getBetByUID(this_user.id);
+            }
+        }
+
+        private void betGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            {
+                if (e.RowIndex >= 0)
+                {
+                    DataGridViewRow row = this.betGridView.Rows[e.RowIndex];
+                    //debug_txtBox.Text = row.Cells[0].Value.ToString();
+                    try
+                    {
+                        int p = int.Parse(row.Cells[0].Value.ToString());
+                        TransactionScripts.updateBet(p,
+                            int.Parse(row.Cells[1].Value.ToString()),
+                            int.Parse(row.Cells[2].Value.ToString()),
+                            float.Parse(row.Cells[3].Value.ToString()),
+                            float.Parse(row.Cells[4].Value.ToString()),
+                            DateTime.Parse(row.Cells[5].Value.ToString()),
+                            bool.Parse(row.Cells[6].Value.ToString()));
+                    }
+                    catch (FormatException ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+
+                    //Name_txt.Text = row.Cells["First Name"].Value.ToString();
+                    //Surname_txt.Text = row.Cells["Last Name"].Value.ToString();
+                }
+
+            }
+
+        }
+
+        private void makeBet_btn_Click(object sender, EventArgs e)
+        {
+            float p;
+            try
+            {
+                p = float.Parse(BetValue_txtBox.Text.ToString());
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show("Введите корректное значение ставки");
+                p = 0;
+            }
+
+            if (p > 0)
+            {
+                Error res = TransactionScripts.makeBet(this.betType_id, this_user, p);
+                if (res.error)
+                {
+                    MessageBox.Show(res.message);
+                }
+                else
+                {
+                    MessageBox.Show("Ставка совершена");
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("Введите корректное значение ставки");
+            }
+
+
+        }
+
+        private void EventForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -41,7 +41,15 @@
             this.eventGridView1 = new System.Windows.Forms.DataGridView();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
+            this.metroTabPage4 = new MetroFramework.Controls.MetroTabPage();
+            this.users_refresh_btn = new MetroFramework.Controls.MetroButton();
+            this.userGridView = new System.Windows.Forms.DataGridView();
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
+            this.totalcost_lbl = new MetroFramework.Controls.MetroLabel();
+            this.user_cash_lbl = new MetroFramework.Controls.MetroLabel();
+            this.betSum_lbl = new MetroFramework.Controls.MetroLabel();
+            this.makeBet_btn = new MetroFramework.Controls.MetroButton();
+            this.BetValue_txtBox = new MetroFramework.Controls.MetroTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.ev_type_lbl = new MetroFramework.Controls.MetroLabel();
@@ -54,21 +62,19 @@
             this.updateBetType_btn = new MetroFramework.Controls.MetroButton();
             this.betType_GridView = new System.Windows.Forms.DataGridView();
             this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
+            this.bet_refrash_btn = new MetroFramework.Controls.MetroButton();
             this.betGridView = new System.Windows.Forms.DataGridView();
-            this.metroTabPage4 = new MetroFramework.Controls.MetroTabPage();
-            this.users_refresh_btn = new MetroFramework.Controls.MetroButton();
-            this.userGridView = new System.Windows.Forms.DataGridView();
             this.debug_txtBox = new MetroFramework.Controls.MetroTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.eventGridView1)).BeginInit();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
+            this.metroTabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userGridView)).BeginInit();
             this.metroTabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.betType_GridView)).BeginInit();
             this.metroTabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.betGridView)).BeginInit();
-            this.metroTabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.userGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // refresh_btn
@@ -94,14 +100,13 @@
             // 
             // showUsers_btn
             // 
-            this.showUsers_btn.Location = new System.Drawing.Point(696, 197);
+            this.showUsers_btn.Location = new System.Drawing.Point(1027, 231);
             this.showUsers_btn.Name = "showUsers_btn";
             this.showUsers_btn.Size = new System.Drawing.Size(127, 44);
             this.showUsers_btn.TabIndex = 3;
             this.showUsers_btn.Text = "Показать пользователей";
             this.showUsers_btn.UseVisualStyleBackColor = true;
             this.showUsers_btn.Visible = false;
-            this.showUsers_btn.Click += new System.EventHandler(this.showUsers_btn_Click);
             // 
             // findEventById
             // 
@@ -170,13 +175,13 @@
             // metroTabControl1
             // 
             this.metroTabControl1.Controls.Add(this.metroTabPage1);
+            this.metroTabControl1.Controls.Add(this.metroTabPage4);
             this.metroTabControl1.Controls.Add(this.metroTabPage2);
             this.metroTabControl1.Controls.Add(this.metroTabPage3);
-            this.metroTabControl1.Controls.Add(this.metroTabPage4);
             this.metroTabControl1.Location = new System.Drawing.Point(23, 75);
             this.metroTabControl1.Name = "metroTabControl1";
             this.metroTabControl1.SelectedIndex = 1;
-            this.metroTabControl1.Size = new System.Drawing.Size(921, 351);
+            this.metroTabControl1.Size = new System.Drawing.Size(921, 360);
             this.metroTabControl1.TabIndex = 11;
             // 
             // metroTabPage1
@@ -189,27 +194,107 @@
             this.metroTabPage1.Controls.Add(this.refresh_btn);
             this.metroTabPage1.Controls.Add(this.findEventById);
             this.metroTabPage1.Controls.Add(this.createEvent_btn);
-            this.metroTabPage1.Controls.Add(this.showUsers_btn);
             this.metroTabPage1.HorizontalScrollbarBarColor = true;
             this.metroTabPage1.Location = new System.Drawing.Point(4, 39);
             this.metroTabPage1.Name = "metroTabPage1";
-            this.metroTabPage1.Size = new System.Drawing.Size(913, 308);
+            this.metroTabPage1.Size = new System.Drawing.Size(913, 317);
             this.metroTabPage1.TabIndex = 0;
             this.metroTabPage1.Text = "События";
             this.metroTabPage1.VerticalScrollbarBarColor = true;
             // 
+            // metroTabPage4
+            // 
+            this.metroTabPage4.Controls.Add(this.users_refresh_btn);
+            this.metroTabPage4.Controls.Add(this.userGridView);
+            this.metroTabPage4.HorizontalScrollbarBarColor = true;
+            this.metroTabPage4.Location = new System.Drawing.Point(4, 39);
+            this.metroTabPage4.Name = "metroTabPage4";
+            this.metroTabPage4.Size = new System.Drawing.Size(913, 317);
+            this.metroTabPage4.TabIndex = 3;
+            this.metroTabPage4.Text = "Пользователи";
+            this.metroTabPage4.VerticalScrollbarBarColor = true;
+            // 
+            // users_refresh_btn
+            // 
+            this.users_refresh_btn.Location = new System.Drawing.Point(660, 289);
+            this.users_refresh_btn.Name = "users_refresh_btn";
+            this.users_refresh_btn.Size = new System.Drawing.Size(75, 23);
+            this.users_refresh_btn.TabIndex = 3;
+            this.users_refresh_btn.Text = "Обновить";
+            this.users_refresh_btn.Click += new System.EventHandler(this.users_refresh_btn_Click);
+            // 
+            // userGridView
+            // 
+            this.userGridView.BackgroundColor = System.Drawing.Color.Azure;
+            this.userGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.userGridView.Location = new System.Drawing.Point(4, 4);
+            this.userGridView.Name = "userGridView";
+            this.userGridView.RowHeadersWidth = 51;
+            this.userGridView.RowTemplate.Height = 24;
+            this.userGridView.Size = new System.Drawing.Size(731, 271);
+            this.userGridView.TabIndex = 2;
+            // 
             // metroTabPage2
             // 
+            this.metroTabPage2.Controls.Add(this.totalcost_lbl);
+            this.metroTabPage2.Controls.Add(this.user_cash_lbl);
+            this.metroTabPage2.Controls.Add(this.betSum_lbl);
+            this.metroTabPage2.Controls.Add(this.makeBet_btn);
+            this.metroTabPage2.Controls.Add(this.BetValue_txtBox);
             this.metroTabPage2.Controls.Add(this.groupBox1);
             this.metroTabPage2.Controls.Add(this.updateBetType_btn);
             this.metroTabPage2.Controls.Add(this.betType_GridView);
             this.metroTabPage2.HorizontalScrollbarBarColor = true;
             this.metroTabPage2.Location = new System.Drawing.Point(4, 39);
             this.metroTabPage2.Name = "metroTabPage2";
-            this.metroTabPage2.Size = new System.Drawing.Size(913, 308);
+            this.metroTabPage2.Size = new System.Drawing.Size(913, 317);
             this.metroTabPage2.TabIndex = 1;
             this.metroTabPage2.Text = "Типы ставок";
             this.metroTabPage2.VerticalScrollbarBarColor = true;
+            // 
+            // totalcost_lbl
+            // 
+            this.totalcost_lbl.AutoSize = true;
+            this.totalcost_lbl.Location = new System.Drawing.Point(660, 175);
+            this.totalcost_lbl.Name = "totalcost_lbl";
+            this.totalcost_lbl.Size = new System.Drawing.Size(100, 20);
+            this.totalcost_lbl.TabIndex = 26;
+            this.totalcost_lbl.Text = "Всего средств";
+            // 
+            // user_cash_lbl
+            // 
+            this.user_cash_lbl.AutoSize = true;
+            this.user_cash_lbl.Location = new System.Drawing.Point(801, 163);
+            this.user_cash_lbl.Name = "user_cash_lbl";
+            this.user_cash_lbl.Size = new System.Drawing.Size(17, 20);
+            this.user_cash_lbl.TabIndex = 25;
+            this.user_cash_lbl.Text = "0";
+            // 
+            // betSum_lbl
+            // 
+            this.betSum_lbl.AutoSize = true;
+            this.betSum_lbl.Location = new System.Drawing.Point(660, 198);
+            this.betSum_lbl.Name = "betSum_lbl";
+            this.betSum_lbl.Size = new System.Drawing.Size(98, 20);
+            this.betSum_lbl.TabIndex = 24;
+            this.betSum_lbl.Text = "Сумма ставки";
+            // 
+            // makeBet_btn
+            // 
+            this.makeBet_btn.Location = new System.Drawing.Point(735, 224);
+            this.makeBet_btn.Name = "makeBet_btn";
+            this.makeBet_btn.Size = new System.Drawing.Size(143, 58);
+            this.makeBet_btn.TabIndex = 23;
+            this.makeBet_btn.Text = "Сделать ставку";
+            this.makeBet_btn.Click += new System.EventHandler(this.makeBet_btn_Click);
+            // 
+            // BetValue_txtBox
+            // 
+            this.BetValue_txtBox.Location = new System.Drawing.Point(801, 195);
+            this.BetValue_txtBox.Name = "BetValue_txtBox";
+            this.BetValue_txtBox.Size = new System.Drawing.Size(75, 23);
+            this.BetValue_txtBox.TabIndex = 22;
+            this.BetValue_txtBox.Text = "1";
             // 
             // groupBox1
             // 
@@ -227,7 +312,7 @@
             this.groupBox1.Size = new System.Drawing.Size(376, 143);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Событие";
             // 
             // metroLabel1
             // 
@@ -303,7 +388,7 @@
             // 
             // updateBetType_btn
             // 
-            this.updateBetType_btn.Location = new System.Drawing.Point(552, 282);
+            this.updateBetType_btn.Location = new System.Drawing.Point(384, 259);
             this.updateBetType_btn.Name = "updateBetType_btn";
             this.updateBetType_btn.Size = new System.Drawing.Size(111, 23);
             this.updateBetType_btn.TabIndex = 12;
@@ -325,18 +410,29 @@
             this.betType_GridView.Size = new System.Drawing.Size(492, 250);
             this.betType_GridView.TabIndex = 10;
             this.betType_GridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.betType_GridView_CellClick);
+            this.betType_GridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.betType_GridView_CellEndEdit);
             this.betType_GridView.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.betType_GridView_CellEnter);
             // 
             // metroTabPage3
             // 
+            this.metroTabPage3.Controls.Add(this.bet_refrash_btn);
             this.metroTabPage3.Controls.Add(this.betGridView);
             this.metroTabPage3.HorizontalScrollbarBarColor = true;
             this.metroTabPage3.Location = new System.Drawing.Point(4, 39);
             this.metroTabPage3.Name = "metroTabPage3";
-            this.metroTabPage3.Size = new System.Drawing.Size(913, 308);
+            this.metroTabPage3.Size = new System.Drawing.Size(913, 317);
             this.metroTabPage3.TabIndex = 2;
             this.metroTabPage3.Text = "Совершенные ставки";
             this.metroTabPage3.VerticalScrollbarBarColor = true;
+            // 
+            // bet_refrash_btn
+            // 
+            this.bet_refrash_btn.Location = new System.Drawing.Point(781, 246);
+            this.bet_refrash_btn.Name = "bet_refrash_btn";
+            this.bet_refrash_btn.Size = new System.Drawing.Size(75, 40);
+            this.bet_refrash_btn.TabIndex = 3;
+            this.bet_refrash_btn.Text = "Обновить";
+            this.bet_refrash_btn.Click += new System.EventHandler(this.bet_refrash_btn_Click);
             // 
             // betGridView
             // 
@@ -346,44 +442,13 @@
             this.betGridView.Name = "betGridView";
             this.betGridView.RowHeadersWidth = 51;
             this.betGridView.RowTemplate.Height = 24;
-            this.betGridView.Size = new System.Drawing.Size(459, 240);
+            this.betGridView.Size = new System.Drawing.Size(853, 240);
             this.betGridView.TabIndex = 2;
-            // 
-            // metroTabPage4
-            // 
-            this.metroTabPage4.Controls.Add(this.users_refresh_btn);
-            this.metroTabPage4.Controls.Add(this.userGridView);
-            this.metroTabPage4.HorizontalScrollbarBarColor = true;
-            this.metroTabPage4.Location = new System.Drawing.Point(4, 39);
-            this.metroTabPage4.Name = "metroTabPage4";
-            this.metroTabPage4.Size = new System.Drawing.Size(913, 308);
-            this.metroTabPage4.TabIndex = 3;
-            this.metroTabPage4.Text = "Пользователи";
-            this.metroTabPage4.VerticalScrollbarBarColor = true;
-            // 
-            // users_refresh_btn
-            // 
-            this.users_refresh_btn.Location = new System.Drawing.Point(524, 251);
-            this.users_refresh_btn.Name = "users_refresh_btn";
-            this.users_refresh_btn.Size = new System.Drawing.Size(75, 23);
-            this.users_refresh_btn.TabIndex = 3;
-            this.users_refresh_btn.Text = "Обновить";
-            this.users_refresh_btn.Click += new System.EventHandler(this.users_refresh_btn_Click);
-            // 
-            // userGridView
-            // 
-            this.userGridView.BackgroundColor = System.Drawing.Color.Azure;
-            this.userGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.userGridView.Location = new System.Drawing.Point(4, 4);
-            this.userGridView.Name = "userGridView";
-            this.userGridView.RowHeadersWidth = 51;
-            this.userGridView.RowTemplate.Height = 24;
-            this.userGridView.Size = new System.Drawing.Size(446, 271);
-            this.userGridView.TabIndex = 2;
+            this.betGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.betGridView_CellEndEdit);
             // 
             // debug_txtBox
             // 
-            this.debug_txtBox.Location = new System.Drawing.Point(660, 21);
+            this.debug_txtBox.Location = new System.Drawing.Point(1117, 112);
             this.debug_txtBox.Multiline = true;
             this.debug_txtBox.Name = "debug_txtBox";
             this.debug_txtBox.Size = new System.Drawing.Size(240, 67);
@@ -393,24 +458,26 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1070, 458);
+            this.ClientSize = new System.Drawing.Size(962, 458);
             this.Controls.Add(this.metroTabControl1);
             this.Controls.Add(this.debug_txtBox);
+            this.Controls.Add(this.showUsers_btn);
             this.Name = "EventForm";
             this.Text = "EventForm";
-            this.Load += new System.EventHandler(this.EventForm_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EventForm_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.eventGridView1)).EndInit();
             this.metroTabControl1.ResumeLayout(false);
             this.metroTabPage1.ResumeLayout(false);
             this.metroTabPage1.PerformLayout();
+            this.metroTabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.userGridView)).EndInit();
             this.metroTabPage2.ResumeLayout(false);
+            this.metroTabPage2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.betType_GridView)).EndInit();
             this.metroTabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.betGridView)).EndInit();
-            this.metroTabPage4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.userGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -445,5 +512,11 @@
         private System.Windows.Forms.DataGridView userGridView;
         private MetroFramework.Controls.MetroTextBox debug_txtBox;
         private MetroFramework.Controls.MetroButton users_refresh_btn;
+        private MetroFramework.Controls.MetroButton bet_refrash_btn;
+        private MetroFramework.Controls.MetroButton makeBet_btn;
+        private MetroFramework.Controls.MetroTextBox BetValue_txtBox;
+        private MetroFramework.Controls.MetroLabel betSum_lbl;
+        private MetroFramework.Controls.MetroLabel user_cash_lbl;
+        private MetroFramework.Controls.MetroLabel totalcost_lbl;
     }
 }

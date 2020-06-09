@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
+using System.Windows.Forms.Design;
 
 namespace BookmarketApp
 {
@@ -92,6 +94,7 @@ namespace BookmarketApp
         {
             return Event.showAll();
         }
+
         public static Error createEvent(string name, string eventType, string place, 
                 string date, string time) 
         {
@@ -225,6 +228,121 @@ namespace BookmarketApp
                 res.message = e.ToString();
             }
             return res;
+        }
+    
+        public static Error updateBetType(int id, int eventid, string description, string coef)
+        {
+            Error res = new Error();
+            res.error = false;
+            try
+            {
+                BetType b = new BetType(id);
+                b.eventid = eventid;
+                b.description = description;
+                b.coef = coef.Split(',');
+
+                b.save();
+                return res;
+            }
+            catch (Exception e)
+            {
+                res.error = true;
+                res.message = e.ToString();
+                return res;
+            }
+        }
+
+        public static DataTable getAllBets()
+        {
+            return(Bet.showAll());
+        }
+
+        public static Error updateBet(int id, int client, int bet_type, float bet_coef,
+            float cost, DateTime date, bool status)
+        {
+            Error res = new Error();
+            res.error = false;
+
+            try
+            {
+                Bet b = new Bet(id);
+                b.client_id = client;
+                b.bet_type_id = bet_type;
+                b.bet_coef = bet_coef;
+                b.cost = cost;
+                b.date = DateTime.Now;
+                b.status = status;
+
+                b.save();
+                return res;
+            }
+            catch (Exception e)
+            {
+                res.error = true;
+                res.message = e.ToString();
+                return res;
+            }
+
+
+
+            return res;
+        }
+
+
+        public static DataTable getBetTypeByEvent(int event_id)
+        {
+            return (BetType.showAllByEvent(event_id));
+        }
+
+        public static Error makeBet(int bet_type_id, User user, float value)
+        {
+            Error res = new Error();
+            res.error = false;
+            if (user.getCash() < value)
+            {
+                res.error = true;
+                res.message =  $"Нехватка средств, на счету {user.getCash()} средств";
+            }
+            else
+            {
+                try
+                {
+                    float coef = BetType.getLastCoefByID(bet_type_id);
+                    
+
+                    Bet b = new Bet();
+                    b.bet_type_id = bet_type_id;
+                    b.client_id = user.id;
+                    b.cost = value;
+                    b.bet_coef = coef;
+                    b.date = DateTime.Now;
+
+                    user.reduceCash(value);
+
+                    b.save();
+                }
+                catch (Exception e)
+                {
+                    res.error = true;
+                    res.message = e.ToString();
+                }
+            }
+            return res;
+        }
+    
+        public static DataTable getBetByUID(int uid)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = Bet.showAllByUID(uid);
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            return dt;
         }
     }
 }

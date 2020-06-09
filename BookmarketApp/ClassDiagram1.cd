@@ -3,78 +3,78 @@
   <Class Name="BookmarketApp.CreateEventForm" Collapsed="true">
     <Position X="3" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAAAAEAAACAAAJAAAACAAQADAAAAAAAAhAAAAAJAAAA=</HashCode>
-      <FileName>CreateEventForm.cs</FileName>
+      <HashCode>AAAAAEAAACAAAJAAAACBAAADAAAAAAIAhCAAAAJUAAA=</HashCode>
+      <FileName>UserForms\CreateEventForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BookmarketApp.EventForm">
-    <Position X="1" Y="2.25" Width="1.5" />
+    <Position X="0.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAAAACABADFACJEAAACAgAACAAgIQAAACACAAAIEACA=</HashCode>
-      <FileName>EventForm.cs</FileName>
+      <HashCode>ESAMACAAgD1JqpBABFGIgAACARhIQAQgKCCAIAeEJSg=</HashCode>
+      <FileName>UserForms\UserForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BookmarketApp.Model" Collapsed="true">
     <Position X="10.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAAAAAAAAAAAAAAAAAAACQAAAAAAAAAAAAAACAAAAgA=</HashCode>
-      <FileName>Models.cs</FileName>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAACAAAAgA=</HashCode>
+      <FileName>Models\Models.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BookmarketApp.Users" Collapsed="true">
+  <Class Name="BookmarketApp.User" Collapsed="true">
     <Position X="8.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACAQAAAAgACEBAAgAACBAAAAAAAAAAAAAAYAAAAAAAA=</HashCode>
-      <FileName>Models.cs</FileName>
+      <HashCode>ACAQAAAAgACEJAAgAACEAAAAAAAAAAAAAAYAAgAAEAA=</HashCode>
+      <FileName>Models\Models.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BookmarketApp.Event" Collapsed="true">
     <Position X="8.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAAAAAAgACAAAAAAAQAAAQAAAAAQAAAAAAAAQAAAAA=</HashCode>
-      <FileName>Models.cs</FileName>
+      <HashCode>IAAAAAAAgACAAAAAAAAAAAQAAAAFQAAAAAAAAQAAAAg=</HashCode>
+      <FileName>Models\Models_new.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BookmarketApp.MainForm" Collapsed="true">
     <Position X="0.75" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BRAEAAAAAKAAABAAAACAEAACKEAAAEABAAAAAAAAAAQ=</HashCode>
-      <FileName>MainForm.cs</FileName>
+      <HashCode>BRAEAAAAAKAAABAAAACAEAACKEAAAEABACAAAAAAAAQ=</HashCode>
+      <FileName>UserForms\AuthForms\AuthForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BookmarketApp.TransactionScripts" Collapsed="true">
-    <Position X="5.5" Y="3" Width="1.5" />
+    <Position X="5.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAQAgIAAAAAAAAAAAAAAkAABAAgCAAA=</HashCode>
-      <FileName>TransactionScripts.cs</FileName>
+      <HashCode>AAAABAAAAIABAAQAgIIIAAAAAAAAAAAAkAABAAgCAAA=</HashCode>
+      <FileName>BookmarkApp\TransactionScripts.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BookmarketApp.RegistrationForm" Collapsed="true">
-    <Position X="4" Y="1" Width="1.5" />
+    <Position X="3.5" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAQICAAACAAABAAgICAAAACIAAAAAAAEAQAAAAAgAg=</HashCode>
-      <FileName>RegistrationForm.cs</FileName>
+      <FileName>UserForms\AuthForms\RegistrationForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BookmarketApp.DBConnection" Collapsed="true">
     <Position X="10.25" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAEAQAAAAAABAAACAAAAAAAAAA=</HashCode>
-      <FileName>dbConnection.cs</FileName>
+      <FileName>Models\dbConnection.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BookmarketApp.encryption">
     <Position X="5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
-      <FileName>encryption.cs</FileName>
+      <FileName>BookmarkApp\Encryption\encryption.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="BookmarketApp.Error" Collapsed="true">
     <Position X="8.75" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
-      <FileName>TransactionScripts.cs</FileName>
+      <FileName>BookmarkApp\TransactionScripts.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Font Name="Segoe UI" Size="9" />

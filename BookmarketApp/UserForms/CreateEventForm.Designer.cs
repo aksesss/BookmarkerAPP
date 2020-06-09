@@ -64,7 +64,7 @@
             // 
             this.createEvent_btn.Location = new System.Drawing.Point(190, 264);
             this.createEvent_btn.Name = "createEvent_btn";
-            this.createEvent_btn.Size = new System.Drawing.Size(75, 23);
+            this.createEvent_btn.Size = new System.Drawing.Size(111, 23);
             this.createEvent_btn.TabIndex = 2;
             this.createEvent_btn.Text = "Создать";
             this.createEvent_btn.UseVisualStyleBackColor = true;

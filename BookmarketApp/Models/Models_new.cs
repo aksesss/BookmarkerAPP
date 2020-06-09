@@ -107,8 +107,6 @@ namespace BookmarketApp
         }
     }
 
-
-
     class EventFlyweightFactory
     {
         public Hashtable flyweights;
