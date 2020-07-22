@@ -14,7 +14,7 @@ namespace BookmarketApp
     {
         private static string connection_str = "Server=127.0.0.1;" +
                                                "User Id=postgres;" +
-                                               "Password=785941828;" +
+                                               "Password=*******;" +
                                                "Database=vin_dz2";
         public static NpgsqlConnection con = new NpgsqlConnection(connection_str);
         //   private string dbstr = ''
