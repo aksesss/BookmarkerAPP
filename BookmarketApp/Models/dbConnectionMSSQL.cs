@@ -13,7 +13,7 @@ namespace BookmarketApp_another
     {
         private static string connection_str = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\als\source\repos\mydz2_v2\mydz2_v2\Bookmark.mdf;Integrated Security=True";    //Строка подключения
         //private static string connection_str = "Server=127.0.0.1;User Id=postgres;" +
-        //                        "Password=785941828;Database=lab1_chAA";
+        //                        "Password=********;Database=lab1_chAA";
         public static SqlConnection con = new SqlConnection(connection_str);
         //   private string dbstr = ''
         public DBConnection()
